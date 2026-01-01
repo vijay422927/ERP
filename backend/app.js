@@ -2,6 +2,7 @@ import express from "express";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import cors from "cors";
+import adminRouter from "./src/routes/admin.route.js";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -9,12 +10,14 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors({
-  origin :"http://localhost:5173/",
-  methods :["POST","GET","DELETE","PATCH"],
-  httpOnly : true,
-  credentials : true
-}));
+app.use(
+  cors({
+    origin: "http://localhost:5173/",
+    methods: ["POST", "GET", "DELETE", "PATCH"],
+    httpOnly: true,
+    credentials: true,
+  })
+);
 
 app.use(
   session({
@@ -32,7 +35,6 @@ app.use(
   })
 );
 
-import adminRouter from "./src/routes/admin.route.js";
 app.use("/api/v2/admin", adminRouter);
 
 import mapRouter from "./src/routes/mapping.route.js";

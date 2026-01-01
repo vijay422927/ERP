@@ -6,6 +6,7 @@ import { regulationRouter } from "./regulationRoute";
 import { branchRouter } from "./branchesRoute";
 import { programsRouter } from "./programsRoute";
 import { facultyRouter } from "./facultyRoute";
+import { courseRouter } from "./courseRouter";
 export const rootRoute = createRootRoute({
   component: rootLayout,
 });
@@ -17,4 +18,5 @@ export const routerTree = rootRoute.addChildren([
   branchRouter,
   programsRouter,
   facultyRouter,
+  courseRouter,
 ]);

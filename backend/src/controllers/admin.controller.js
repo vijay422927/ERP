@@ -1,5 +1,4 @@
 import bcrypt from "bcryptjs";
-import mongoose from "mongoose";
 import { User } from "../models/user.model.js";
 import { Apierror } from "../utils/Apierror.js";
 import { Apiresponse } from "../utils/Apiresponse.js";

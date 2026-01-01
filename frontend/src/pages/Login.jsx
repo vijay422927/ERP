@@ -1,19 +1,35 @@
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
+import { loginAdmin } from "../api/apiMethod";
+import { useNavigate } from "@tanstack/react-router";
 
 const LoginPage = () => {
-  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-
+  const navigate = useNavigate();
+  const loginMutation = useMutation({
+    mutationFn: ({ email, password }) => loginAdmin(email, password),
+    onSuccess: (res) => {
+      console.log(res);
+      navigate({ to: "/dashboard" });
+    },
+    onError: (error) => {
+      console.log(error);
+      setError((prev) => !prev);
+      navigate({ to: "/login" });
+    },
+  });
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
-    if (!userName) return setError("Please enter your email or username.");
+    if (!email) return setError("Please enter your email or username.");
     if (!password) return setError("Please enter your password.");
     // TODO: integrate real auth call
-    console.log({ userName, password, remember });
+    console.log({ email, password, remember });
+    loginMutation.mutate({ email, password });
   };
 
   return (
@@ -34,12 +50,12 @@ const LoginPage = () => {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-               Username
+              Username
             </label>
             <input
               type="text"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="you@example.com"
             />
