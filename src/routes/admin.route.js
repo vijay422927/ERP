@@ -1,0 +1,22 @@
+import express from 'express';
+import { insertAdmin } from '../manual/adminInsert.js';
+import { adminLogin, adminLogout, changeAdminPassword, createBranch, createFaculty, createProgram, createRegulation, deleteBranch, deleteFaculty, deleteProgram, deleteRegulation, getAllBranches, getAllFaculty, getPrograms, getRegulations } from '../controllers/admin.controller.js';
+const router=express.Router();
+// router.post('/Admin',insertAdmin);
+router.post('/adminLogin',adminLogin);
+router.post('/adminLogout',adminLogout);
+router.post('/adminChangePassword',changeAdminPassword);
+router.post('/create_faculty',createFaculty);
+router.get('/getFaculty',getAllFaculty);
+router.post('/create_branch',createBranch);
+router.get('/getBranch',getAllBranches);
+router.post('/deleteFaculty',deleteFaculty);
+router.delete('/deleteBranch',deleteBranch);
+router.post('/createProgram',createProgram);
+router.get('/getPrograms',getPrograms);
+router.delete('/deleteProgram',deleteProgram);
+router.post('/createRegulation',createRegulation);
+router.get('/getRegulation',getRegulations);
+router.delete('/deleteRegulation',deleteRegulation);
+
+export default router;
