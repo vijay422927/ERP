@@ -34,4 +34,7 @@ app.use('/api/v2/admin',adminRouter);
 import mapRouter from './src/routes/mapping.route.js';
 app.use('/api/v2/map',mapRouter);
 
+import courseRouter from './src/routes/course.route.js';
+app.use('/api/v2/course',courseRouter);
+
 export {app};
