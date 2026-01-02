@@ -5,22 +5,23 @@ const branchSchema = new mongoose.Schema(
     name: {
       type: String,
       required: true,
-      unique: true,
-      trim: true
     },
     code: {
       type: String,
       required: true,
-      unique: true
+    },
+    program: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Program",
+      required: true,
     },
     status: {
       type: String,
-      enum: ["ACTIVE", "INACTIVE"],
-      default: "ACTIVE"
-    }
+      enum: ["active", "inactive"],
+      default: "active",
+    },
   },
   { timestamps: true }
 );
 
-const Branch = mongoose.model("Branch", branchSchema);
-export { Branch };
+export const Branch = mongoose.model("Branch", branchSchema);

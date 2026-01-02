@@ -6,16 +6,15 @@ const regulationSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      trim: true
     },
     status: {
       type: String,
-      enum: ["ACTIVE", "INACTIVE"],
-      default: "ACTIVE"
-    }
+      required: true,
+      enum: ["active", "inactive"],
+      default: "active",
+    },
   },
   { timestamps: true }
 );
 
-const Regulation = mongoose.model("Regulation", regulationSchema);
-export { Regulation };
+export const Regulation = mongoose.model("Regulation", regulationSchema);
